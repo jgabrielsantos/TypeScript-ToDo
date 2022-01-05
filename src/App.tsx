@@ -12,7 +12,7 @@ function App() {
   const [todo, setTodo] = useState<taskProp[]>([])
   
   const createTask = (event: ChangeEvent<HTMLInputElement>) => {
-    setTask(event.target.value)
+      setTask(event.target.value)
   }
 
   const addTask = () => {
@@ -21,7 +21,12 @@ function App() {
       isDone: false,
     }
 
-    setTodo([...todo, newTask])
+    if (newTask.taskName != "") {
+      setTodo([...todo, newTask])
+    } else {
+      console.log("can't add blank task")
+    }
+
   }
 
   const removeTask = (deleteTask: string) => {
