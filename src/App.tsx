@@ -24,9 +24,9 @@ function App() {
     if (newTask.taskName != "") {
       setTodo([...todo, newTask])
     } else {
-      console.log("can't add blank task")
+      console.log("can't add empty task")
+      // need to display an error message
     }
-
   }
 
   const removeTask = (deleteTask: string) => {
@@ -38,12 +38,16 @@ function App() {
 
   return (
     <main>
-      <input type="text" placeholder="Task" onChange={createTask}/>
-      <button id="newTaskButton" onKeyPress={addTask} onClick={addTask} >Add item to list</button>
+      <div className="entry">
+        <input className='newTask' type="text" placeholder="Task" onChange={createTask}/>
+        <button className="taskButton" onKeyPress={addTask} onClick={addTask} >Add item to list</button>
+      </div>
 
-      {todo.map((task: taskProp, key: number) => {
-        return <Task task={task} key={key} removeTask={removeTask} />
-      })}
+      <div className="list">
+        {todo.map((task: taskProp, key: number) => {
+          return <Task task={task} key={key} removeTask={removeTask} />
+        })}
+      </div>
     </main>
   )
 }
